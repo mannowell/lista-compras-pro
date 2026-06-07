@@ -33,7 +33,7 @@
 |------|------------------|----------|---------------------|
 | ![Home](assets/screenshots/home.png) | ![Lista](assets/screenshots/lista.png) | ![Mercados](assets/screenshots/mercados.png) | ![Preços](assets/screenshots/precos.png) |
 
-> **Nota**: Adicione screenshots reais na pasta `assets/screenshots/` para aparecerem acima.
+
 
 ---
 
@@ -168,7 +168,7 @@ npm run build
 2. Crie branch: `git checkout -b feature/nova-funcionalidade`
 3. Commit: `git commit -m 'feat: adiciona nova funcionalidade'`
 4. Push: `git push origin feature/nova-funcionalidade`
-5. Abra Pull Request
+5. Abra Pull Request 
 
 > Leia [CONTRIBUTING.md](CONTRIBUTING.md) para padrões de commit, código e PR.
 
