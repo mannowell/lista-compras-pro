@@ -1,8 +1,33 @@
 {
-  "name": "app-mercado-new",
+  "name": "lista-compras-pro",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
+  "description": "🛒 Lista Compras Pro — App mobile (Ionic + Vue + Capacitor) para listas de compras inteligentes com histórico de preços, comparação entre mercados, sincronização offline-first e modo família. Android & iOS.",
+  "author": "Mannowell <manofama@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mannowell/lista-compras-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mannowell/lista-compras-pro/issues"
+  },
+  "homepage": "https://github.com/mannowell/lista-compras-pro#readme",
+  "keywords": [
+    "ionic",
+    "vue",
+    "capacitor",
+    "shopping-list",
+    "price-tracker",
+    "offline-first",
+    "mobile-app",
+    "android",
+    "ios",
+    "sqlite",
+    "pinia",
+    "typescript"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -72,6 +97,5 @@
   },
   "overrides": {
     "rollup": "4.44.0"
-  },
-  "description": "An Ionic project"
+  }
 }
