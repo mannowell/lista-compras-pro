@@ -8,9 +8,9 @@ const api = axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    Accept: 'application/json'
   }
-});
+})
 
 const mock = new MockAdapter(api, { onNoMatch: 'throwException' });
 
@@ -31,7 +31,7 @@ const mockApiResponses = {
       message: 'Email or password is incorrect'
     }
   },
-  
+
   // Produtos
   products: {
     list: {
@@ -55,7 +55,7 @@ const mockApiResponses = {
       image: 'https://example.com/product1.jpg'
     }
   },
-  
+
   // Listas de compras
   shoppingLists: {
     list: {
@@ -71,8 +71,8 @@ const mockApiResponses = {
         { id: 'item-1', productId: 'prod-1', quantity: 2, checked: false },
         { id: 'item-2', productId: 'prod-2', quantity: 1, checked: true }
       ]
-    }
-  }
+    },
+  },
 };
 
 // Configura os mocks padrão

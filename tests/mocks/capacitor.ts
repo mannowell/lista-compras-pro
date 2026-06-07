@@ -107,31 +107,6 @@ export function setupCapacitorMocks() {
       saveToLocalDisk = vi.fn();
       getFromLocalDiskToStore = vi.fn();
       getNCDatabasePath = vi.fn();
-      createConnection = vi.fn();
-      closeAllConnections = vi.fn();
-      addUpgradeStatement = vi.fn();
-      copyFromAssets = vi.fn();
-      isDatabase = vi.fn();
-      isNCDatabase = vi.fn();
-      isDatabaseEncrypted = vi.fn();
-      isInConfigEncryption = vi.fn();
-      isInConfigBiometricAuth = vi.fn();
-      isSecretStored = vi.fn();
-      setEncryptionSecret = vi.fn();
-      changeEncryptionSecret = vi.fn();
-      clearEncryptionSecret = vi.fn();
-      checkEncryptionSecret = vi.fn();
-      isStoreOpen = vi.fn();
-      isStoreExists = vi.fn();
-      deleteStore = vi.fn();
-      isJsonValid = vi.fn();
-      importFromJson = vi.fn();
-      exportToJson = vi.fn();
-      createSyncTable = vi.fn();
-      setSyncDate = vi.fn();
-      getSyncDate = vi.fn();
-      addUpgradeStatement = vi.fn();
-      copyFromAssets = vi.fn();
     },
     SQLiteDBConnection: class {},
     SQLiteHook: {

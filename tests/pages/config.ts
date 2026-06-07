@@ -42,11 +42,12 @@ vi.mock('pinia', () => ({
   createPinia: vi.fn(() => ({
     install: vi.fn()
   })),
-  storeToRefs: vi.fn((store) => {
-    const refs = {};
-    Object.keys(store).forEach((key) => {
-      refs[key] = { value: store[key] };
-    });
+  storeToRefs: vi.fn(store => {
+    const refs: Record<string, { value: unknown }> = {};
+    Object.keys(store).forEach(key => {
+      refs[key] = { value: (store as Record<string, unknown>)[key] };
+    })
+
     return refs;
   })
 }));

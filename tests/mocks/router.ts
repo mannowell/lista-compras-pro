@@ -15,9 +15,9 @@ export function setupRouterMocks() {
         afterEach: vi.fn(),
         onError: vi.fn(),
         isReady: vi.fn(() => Promise.resolve()),
-        currentRoute: { 
-          value: { 
-            path: '/', 
+        currentRoute: {
+          value: {
+            path: '/',
             name: 'Home',
             params: {},
             query: {},
@@ -26,12 +26,12 @@ export function setupRouterMocks() {
             matched: [],
             meta: {},
             redirectedFrom: undefined
-          } 
+          }
         },
         options: {
           routes: []
         },
-        resolve: vi.fn((to) => ({
+        resolve: vi.fn(to => ({
           href: to.path || '/',
           route: { path: to.path || '/', name: to.name || 'Home' }
         })),
@@ -39,16 +39,6 @@ export function setupRouterMocks() {
         getRoutes: vi.fn(() => []),
         hasRoute: vi.fn(() => true),
         removeRoute: vi.fn(),
-        replace: vi.fn(),
-        push: vi.fn(),
-        back: vi.fn(),
-        forward: vi.fn(),
-        go: vi.fn(),
-        beforeEach: vi.fn(),
-        beforeResolve: vi.fn(),
-        afterEach: vi.fn(),
-        onError: vi.fn(),
-        isReady: vi.fn(() => Promise.resolve()),
         install: vi.fn()
       })),
       useRoute: vi.fn(() => ({
@@ -72,16 +62,16 @@ export function setupRouterMocks() {
         afterEach: vi.fn(),
         onError: vi.fn(),
         isReady: vi.fn(() => Promise.resolve()),
-        currentRoute: { 
-          value: { 
-            path: '/', 
+        currentRoute: {
+          value: {
+            path: '/',
             name: 'Home'
-          } 
+          }
         },
         options: {
           routes: []
         },
-        resolve: vi.fn((to) => ({
+        resolve: vi.fn(to => ({
           href: to.path || '/',
           route: { path: to.path || '/', name: to.name || 'Home' }
         })),
@@ -113,14 +103,12 @@ export function setupRouterMocks() {
           }
         },
         setup() {
-          // Mock implementation
           return () => null;
         }
       },
       RouterView: {
         name: 'RouterView',
         setup() {
-          // Mock implementation
           return () => null;
         }
       },
@@ -132,5 +120,5 @@ export function setupRouterMocks() {
         navigate: vi.fn()
       }))
     };
-  });
+  })
 }

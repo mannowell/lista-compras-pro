@@ -83,6 +83,8 @@
     "@vue/eslint-config-typescript": "^12.0.0",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.17",
+    "axios": "^1.17.0",
+    "axios-mock-adapter": "^2.1.0",
     "cypress": "^13.6.6",
     "esbuild-linux-64": "^0.15.18",
     "eslint": "^8.56.0",
