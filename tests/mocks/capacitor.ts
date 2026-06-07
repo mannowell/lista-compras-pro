@@ -127,34 +127,34 @@ export function setupCapacitorMocks() {
         syncDate: vi.fn(),
         syncSchema: vi.fn()
       })),
-      checkConnectionsConsistency: vi.fn(),
-      isConnection: vi.fn(),
-      retrieveConnection: vi.fn(),
-      retrieveAllConnections: vi.fn(),
-      closeAllConnections: vi.fn(),
-      initWebStore: vi.fn(),
-      saveToStore: vi.fn(),
-      saveToLocalDisk: vi.fn(),
-      getFromLocalDiskToStore: vi.fn(),
-      getNCDatabasePath: vi.fn(),
-      createConnection: vi.fn(),
-      closeAllConnections: vi.fn(),
-      addUpgradeStatement: vi.fn(),
-      copyFromAssets: vi.fn(),
-      isDatabase: vi.fn(),
-      isNCDatabase: vi.fn(),
-      isDatabaseEncrypted: vi.fn(),
-      isInConfigEncryption: vi.fn(),
-      isInConfigBiometricAuth: vi.fn(),
-      isSecretStored: vi.fn(),
-      setEncryptionSecret: vi.fn(),
-      changeEncryptionSecret: vi.fn(),
-      clearEncryptionSecret: vi.fn(),
-      checkEncryptionSecret: vi.fn(),
-      isStoreOpen: vi.fn(),
-      isStoreExists: vi.fn(),
-      deleteStore: vi.fn(),
-      isJsonValid: vi.fn(),
+      checkConnectionsConsistency = vi.fn();
+      isConnection = vi.fn();
+      retrieveConnection = vi.fn();
+      retrieveAllConnections = vi.fn();
+      closeAllConnections = vi.fn();
+      initWebStore = vi.fn();
+      saveToStore = vi.fn();
+      saveToLocalDisk = vi.fn();
+      getFromLocalDiskToStore = vi.fn();
+      getNCDatabasePath = vi.fn();
+      createConnection = vi.fn();
+      closeAllConnections = vi.fn();
+      addUpgradeStatement = vi.fn();
+      copyFromAssets = vi.fn();
+      isDatabase = vi.fn();
+      isNCDatabase = vi.fn();
+      isDatabaseEncrypted = vi.fn();
+      isInConfigEncryption = vi.fn();
+      isInConfigBiometricAuth = vi.fn();
+      isSecretStored = vi.fn();
+      setEncryptionSecret = vi.fn();
+      changeEncryptionSecret = vi.fn();
+      clearEncryptionSecret = vi.fn();
+      checkEncryptionSecret = vi.fn();
+      isStoreOpen = vi.fn();
+      isStoreExists = vi.fn();
+      deleteStore = vi.fn();
+      isJsonValid = vi.fn();,
       importFromJson: vi.fn(),
       exportToJson: vi.fn(),
       createSyncTable: vi.fn(),
