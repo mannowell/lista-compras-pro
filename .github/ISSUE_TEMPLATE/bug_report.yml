@@ -1,0 +1,49 @@
+---
+name: Bug Report
+about: Reporte um bug para nos ajudar a melhorar
+title: "[BUG] "
+labels: ["bug", "triage"]
+assignees: ""
+---
+
+## 🐛 Descrição do Bug
+
+<!-- Descreva claramente o bug -->
+
+## 🔄 Passos para Reproduzir
+
+1. Vá para '...'
+2. Clique em '...'
+3. Role até '...'
+4. Veja o erro
+
+## ✅ Comportamento Esperado
+
+<!-- O que deveria acontecer -->
+
+## ❌ Comportamento Atual
+
+<!-- O que acontece de fato -->
+
+## 📱 Ambiente
+
+| Item | Versão |
+|------|--------|
+| App | v1.x.x |
+| Device | ex: Samsung Galaxy S23 / iPhone 15 |
+| OS | Android 14 / iOS 17 |
+| Build | Debug / Release / TestFlight |
+
+## 📸 Screenshots / Vídeo
+
+<!-- Arraste arquivos aqui ou cole link -->
+
+## 📋 Logs
+
+```
+Cole logs relevantes aqui (adb logcat, Xcode console, etc)
+```
+
+## 🔍 Informações Adicionais
+
+<!-- Contexto extra, configurações, etc -->
