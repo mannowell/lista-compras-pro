@@ -66,6 +66,7 @@
     "@ionic/storage": "^4.0.0",
     "@ionic/vue": "^8.0.0",
     "@ionic/vue-router": "^8.0.0",
+    "@rollup/rollup-linux-x64-gnu": "^4.44.0",
     "ionicons": "^7.2.2",
     "pinia": "^3.0.3",
     "vue": "^3.4.21",
@@ -73,6 +74,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^7.4.3",
+    "@esbuild/linux-x64": "^0.28.0",
     "@types/node": "^20.19.13",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -82,6 +84,7 @@
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.17",
     "cypress": "^13.6.6",
+    "esbuild-linux-64": "^0.15.18",
     "eslint": "^8.56.0",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "^7.0.0-beta.4",
