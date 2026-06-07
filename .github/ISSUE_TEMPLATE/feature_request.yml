@@ -1,0 +1,35 @@
+---
+name: Feature Request
+about: Sugira uma nova funcionalidade
+title: "[FEAT] "
+labels: ["enhancement", "triage"]
+assignees: ""
+---
+
+## 💡 Problema que Resolve
+
+<!-- Descreva o problema que esta feature resolveria. Ex: "Usuários não conseguem..." -->
+
+## 🎯 Solução Proposta
+
+<!-- Descreva sua idéia de solução -->
+
+## 🔄 Alternativas Consideradas
+
+<!-- Outras soluções que você pensou e por que não funcionam -->
+
+## 🎨 Mockups / Wireframes
+
+<!-- Se aplicável, adicione sketches, Figma links, etc -->
+
+## 📱 Contexto Adicional
+
+- Platform: Android / iOS / Web / Todas
+- Prioridade: Baixa / Média / Alta / Crítica
+- Relacionado a: #issue-number (se houver)
+
+## ✅ Checklist de Aceitação
+
+- [ ] Critério 1
+- [ ] Critério 2
+- [ ] Critério 3
