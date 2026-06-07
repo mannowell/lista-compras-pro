@@ -21,7 +21,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['vue', '@typescript-eslint', 'prettier'],
+  plugins: ['vue', '@typescript-eslint', 'prettier', 'jest'],
   settings: {
     'import/resolver': {
       node: {
@@ -38,7 +38,7 @@ module.exports = {
     // Regras básicas do JavaScript
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-unused-vars': 'off', // Desativado em favor de @typescript-eslint/no-unused-vars
+    'no-unused-vars': 'off',
     'no-undef': 'off',
     'no-redeclare': 'off',
     'no-var': 'error',
@@ -200,7 +200,6 @@ module.exports = {
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        // Sobrescreva as regras aqui para arquivos TypeScript
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-var-requires': 'off',
@@ -214,7 +213,6 @@ module.exports = {
     {
       files: ['*.vue'],
       rules: {
-        // Sobrescreva as regras aqui para arquivos Vue
         'indent': 'off',
         'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
       }
@@ -222,11 +220,9 @@ module.exports = {
     {
       files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
       env: {
-        jest: true,
-        'jest/globals': true
+        jest: true
       },
       rules: {
-        // Desative as regras que podem conflitar com os testes
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'no-console': 'off',
