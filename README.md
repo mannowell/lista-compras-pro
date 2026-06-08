@@ -193,3 +193,4 @@ Distribuído sob licença **MIT**. Veja [LICENSE](LICENSE) para detalhes.
 - [Capacitor](https://capacitorjs.com/)
 - [Pinia](https://pinia.vuejs.org/)
 - [@capacitor-community/sqlite](https://github.com/capacitor-community/sqlite)
+
