@@ -7,13 +7,15 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   JAVA_VERSION: '17'
 
 jobs:
   lint-and-typecheck:
     name: Lint & Type Check
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,6 +41,8 @@ jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,7 +60,7 @@ jobs:
         run: npm run test:unit -- --run --reporter=dot
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         if: always()
         with:
           files: ./coverage/lcov.info
@@ -66,6 +70,8 @@ jobs:
     name: Build Web (PWA)
     runs-on: ubuntu-latest
     needs: [lint-and-typecheck, unit-tests]
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
