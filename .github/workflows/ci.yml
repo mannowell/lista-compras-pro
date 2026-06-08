@@ -90,10 +90,10 @@ jobs:
           retention-days: 7
 
   build-android:
-    name: Build Android (Debug)
+    name: Build Android (Debug APK)
     runs-on: ubuntu-latest
     needs: [lint-and-typecheck, unit-tests]
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -126,7 +126,7 @@ jobs:
       - name: Build Android Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon --max-workers=2 --configuration-cache
+          ./gradlew assembleDebug --no-daemon --max-workers=2 -Dorg.gradle.internal.http.connectionTimeout=120000 -Dorg.gradle.internal.http.socketTimeout=120000
 
       - name: Upload Android Debug APK
         uses: actions/upload-artifact@v4
@@ -134,53 +134,6 @@ jobs:
           name: app-debug-apk
           path: android/app/build/outputs/apk/debug/*.apk
           retention-days: 7
-
-  build-android-release:
-    name: Build Android (Release AAB)
-    runs-on: ubuntu-latest
-    needs: [lint-and-typecheck, unit-tests]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    timeout-minutes: 45
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: ${{ env.JAVA_VERSION }}
-          cache: 'gradle'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build web assets
-        run: npm run build
-
-      - name: Capacitor sync Android
-        run: npx cap sync android
-
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
-
-      - name: Build Android Release AAB
-        run: |
-          cd android
-          ./gradlew bundleRelease --no-daemon --max-workers=2 --configuration-cache
-
-      - name: Upload Android Release AAB
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-aab
-          path: android/app/build/outputs/bundle/release/*.aab
-          retention-days: 30
 
   build-ios:
     name: Build iOS (Xcode)
@@ -205,9 +158,6 @@ jobs:
 
       - name: Build web assets
         run: npm run build
-
-      - name: Add iOS platform
-        run: npx cap add ios
 
       - name: Capacitor sync iOS
         run: npx cap sync ios
