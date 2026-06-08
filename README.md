@@ -1,6 +1,6 @@
 # 🛒 Lista Compras Pro
 
-> **App mobile completo** para gerenciamento de listas de compras com histórico de preços, comparação entre mercados e sincronização offline-first. Construído com **Ionic + Vue + Capacitor** para Android & iOS.
+> **App mobile** para gerenciamento de listas de compras com histórico de preços, comparação entre mercados e sincronização offline-first. Construído com **Ionic + Vue + Capacitor** para Android & iOS.
 
 [![CI](https://github.com/mannowell/lista-compras-pro/actions/workflows/ci.yml/badge.svg)](https://github.com/mannowell/lista-compras-pro/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -26,15 +26,6 @@
 | 🌙 **Tema Escuro/Claro** | Segue sistema ou preferência do usuário |
 
 ---
-
-## 📸 Screenshots
-
-| Home | Lista de Compras | Mercados | Histórico de Preços |
-|------|------------------|----------|---------------------|
-| ![Home](assets/screenshots/home.png) | ![Lista](assets/screenshots/lista.png) | ![Mercados](assets/screenshots/mercados.png) | ![Preços](assets/screenshots/precos.png) |
-
-
-
 ---
 
 ## 🚀 Quick Start
