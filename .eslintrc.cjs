@@ -175,15 +175,7 @@ module.exports = {
     'vue/mustache-interpolation-spacing': 'error',
     'vue/no-multi-spaces': 'error',
     'vue/no-spaces-around-equal-signs-in-attribute': 'error',
-    'vue/script-indent': [
-      'error',
-      2,
-      {
-        baseIndent: 1,
-        switchCase: 1,
-        ignores: []
-      }
-    ],
+    'vue/script-indent': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/this-in-template': 'error',
     'vue/v-bind-style': 'error',
@@ -214,7 +206,7 @@ module.exports = {
       files: ['*.vue'],
       rules: {
         'indent': 'off',
-        'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
+        'vue/script-indent': 'off'
       }
     },
     {

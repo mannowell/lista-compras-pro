@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi } from 'vitest'
 
 export function setupIonicMocks() {
   // Mock para @ionic/vue
@@ -34,7 +34,7 @@ export function setupIonicMocks() {
     popoverController: {
       create: vi.fn(() => Promise.resolve({ present: vi.fn(), dismiss: vi.fn() }))
     }
-  }));
+  }))
 
   // Mock para ionicons
   vi.mock('ionicons/icons', () => ({
@@ -72,5 +72,5 @@ export function setupIonicMocks() {
     starHalfSharp: 'star-half-sharp',
     star: 'star',
     starHalf: 'star-half'
-  }));
+  }))
 }

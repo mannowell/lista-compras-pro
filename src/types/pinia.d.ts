@@ -5,4 +5,4 @@ declare module 'pinia' {
   }
 }
 
-export {};
+export {}

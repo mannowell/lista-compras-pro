@@ -2,15 +2,19 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+        <template #start>
+          <ion-buttons>
+            <ion-menu-button />
+          </ion-buttons>
+        </template>
         <ion-title>Produtos</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="showAddModal">
-            <ion-icon :icon="addOutline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <template #end>
+          <ion-buttons>
+            <ion-button @click="showAddModal">
+              <ion-icon :icon="addOutline" />
+            </ion-button>
+          </ion-buttons>
+        </template>
       </ion-toolbar>
     </ion-header>
 
@@ -19,8 +23,8 @@
         v-model="searchTerm"
         :debounce="300"
         placeholder="Buscar produtos"
-        @ionInput="handleSearch"
-      ></ion-searchbar>
+        @ion-input="handleSearch"
+      />
 
       <ion-list>
         <ion-item-sliding v-for="produto in produtosFiltrados" :key="produto.id">
@@ -42,13 +46,15 @@
         </ion-item-sliding>
       </ion-list>
 
-      <ion-modal :is-open="isModalOpen" @didDismiss="closeModal">
+      <ion-modal :is-open="isModalOpen" @did-dismiss="closeModal">
         <ion-header>
           <ion-toolbar>
             <ion-title>{{ editMode ? 'Editar' : 'Novo' }} Produto</ion-title>
-            <ion-buttons slot="end">
-              <ion-button @click="closeModal">Fechar</ion-button>
-            </ion-buttons>
+            <template #end>
+              <ion-buttons>
+                <ion-button @click="closeModal">Fechar</ion-button>
+              </ion-buttons>
+            </template>
           </ion-toolbar>
         </ion-header>
 
@@ -56,19 +62,12 @@
           <form @submit.prevent="saveProduto">
             <ion-item>
               <ion-label position="stacked">Nome</ion-label>
-              <ion-input
-                v-model="currentProduto.nome"
-                required
-                type="text"
-              ></ion-input>
+              <ion-input v-model="currentProduto.nome" required type="text" />
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Descrição</ion-label>
-              <ion-textarea
-                v-model="currentProduto.descricao"
-                rows="3"
-              ></ion-textarea>
+              <ion-textarea v-model="currentProdutoDescricao" :rows="3" />
             </ion-item>
 
             <div class="ion-padding">
@@ -84,7 +83,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, ref, computed } from 'vue'
 import {
   IonPage,
   IonHeader,
@@ -104,11 +103,11 @@ import {
   IonItemOption,
   IonModal,
   IonInput,
-  IonTextarea,
-} from '@ionic/vue';
-import { addOutline } from 'ionicons/icons';
-import { Produto } from '@/types';
-import { DatabaseService } from '@/services/DatabaseService';
+  IonTextarea
+} from '@ionic/vue'
+import { addOutline } from 'ionicons/icons'
+import { Produto } from '@/types'
+import { DatabaseService } from '@/services/DatabaseService'
 
 export default defineComponent({
   name: 'ProdutosView',
@@ -131,76 +130,87 @@ export default defineComponent({
     IonItemOption,
     IonModal,
     IonInput,
-    IonTextarea,
+    IonTextarea
   },
   setup() {
-    const db = DatabaseService.getInstance();
-    const produtos = ref<Produto[]>([]);
-    const searchTerm = ref('');
-    const isModalOpen = ref(false);
-    const editMode = ref(false);
-    const currentProduto = ref<Partial<Produto>>({
+    const db = DatabaseService.getInstance()
+    const produtos = ref<Produto[]>([])
+    const searchTerm = ref('')
+    const isModalOpen = ref(false)
+    const editMode = ref(false)
+    const currentProduto = ref<Omit<Produto, 'createdAt' | 'updatedAt'>>({
       nome: '',
       descricao: ''
-    });
+    })
 
     const loadProdutos = async () => {
-      await db.init();
-      produtos.value = await db.getProdutos();
-    };
+      await db.init()
+      produtos.value = await db.getProdutos()
+    }
 
     const produtosFiltrados = computed(() => {
-      if (!searchTerm.value) return produtos.value;
-      const term = searchTerm.value.toLowerCase();
-      return produtos.value.filter(p => 
-        p.nome.toLowerCase().includes(term) ||
-        (p.descricao && p.descricao.toLowerCase().includes(term))
-      );
-    });
+      if (!searchTerm.value) return produtos.value
+      const term = searchTerm.value.toLowerCase()
+
+      return produtos.value.filter(
+        p =>
+          p.nome.toLowerCase().includes(term) ||
+          (p.descricao && p.descricao.toLowerCase().includes(term))
+      )
+    })
+
+    const currentProdutoDescricao = computed({
+      get() {
+        return currentProduto.value.descricao || ''
+      },
+      set(value: string) {
+        currentProduto.value.descricao = value
+      }
+    })
 
     const showAddModal = () => {
-      editMode.value = false;
+      editMode.value = false
       currentProduto.value = {
         nome: '',
         descricao: ''
-      };
-      isModalOpen.value = true;
-    };
+      }
+      isModalOpen.value = true
+    }
 
     const editProduto = (produto: Produto) => {
-      editMode.value = true;
-      currentProduto.value = { ...produto };
-      isModalOpen.value = true;
-    };
+      editMode.value = true
+      currentProduto.value = { ...produto }
+      isModalOpen.value = true
+    }
 
     const closeModal = () => {
-      isModalOpen.value = false;
-    };
+      isModalOpen.value = false
+    }
 
     const saveProduto = async () => {
       if (currentProduto.value.nome) {
-        await db.init();
+        await db.init()
         if (editMode.value && currentProduto.value.id) {
           // Implementar atualização
         } else {
-          await db.addProduto(currentProduto.value);
+          await db.addProduto(currentProduto.value)
         }
-        closeModal();
-        loadProdutos();
+        closeModal()
+        loadProdutos()
       }
-    };
+    }
 
     const deleteProduto = async (id?: number) => {
       if (id) {
         // Implementar exclusão
       }
-    };
+    }
 
     const handleSearch = (event: CustomEvent) => {
-      searchTerm.value = event.detail.value || '';
-    };
+      searchTerm.value = event.detail.value || ''
+    }
 
-    loadProdutos();
+    loadProdutos()
 
     return {
       produtos,
@@ -208,6 +218,7 @@ export default defineComponent({
       isModalOpen,
       editMode,
       currentProduto,
+      currentProdutoDescricao,
       produtosFiltrados,
       showAddModal,
       editProduto,
@@ -216,7 +227,7 @@ export default defineComponent({
       deleteProduto,
       handleSearch,
       addOutline
-    };
+    }
   }
-});
+})
 </script>

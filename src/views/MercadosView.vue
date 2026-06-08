@@ -2,15 +2,19 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+        <template #start>
+          <ion-buttons>
+            <ion-menu-button />
+          </ion-buttons>
+        </template>
         <ion-title>Mercados</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="showModal">
-            <ion-icon :icon="addOutline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <template #end>
+          <ion-buttons>
+            <ion-button @click="showModal">
+              <ion-icon :icon="addOutline" />
+            </ion-button>
+          </ion-buttons>
+        </template>
       </ion-toolbar>
     </ion-header>
 
@@ -36,9 +40,11 @@
         <ion-header>
           <ion-toolbar>
             <ion-title>Novo Mercado</ion-title>
-            <ion-buttons slot="end">
-              <ion-button @click="closeModal">Cancelar</ion-button>
-            </ion-buttons>
+            <template #end>
+              <ion-buttons>
+                <ion-button @click="closeModal">Cancelar</ion-button>
+              </ion-buttons>
+            </template>
           </ion-toolbar>
         </ion-header>
 
@@ -46,16 +52,20 @@
           <ion-list>
             <ion-item>
               <ion-label position="stacked">Nome</ion-label>
-              <ion-input type="text" v-model="novoMercado.nome" placeholder="Nome do mercado"></ion-input>
+              <ion-input v-model="novoMercado.nome" type="text" placeholder="Nome do mercado" />
             </ion-item>
 
             <ion-item>
               <ion-label position="stacked">Endereço</ion-label>
-              <ion-input type="text" v-model="novoMercado.endereco" placeholder="Endereço do mercado"></ion-input>
+              <ion-input
+                v-model="novoMercado.endereco"
+                type="text"
+                placeholder="Endereço do mercado"
+              />
             </ion-item>
           </ion-list>
 
-          <ion-button expand="block" @click="salvar" :disabled="!novoMercado.nome">
+          <ion-button expand="block" :disabled="!novoMercado.nome" @click="salvar">
             Adicionar
           </ion-button>
         </ion-content>
@@ -65,8 +75,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import { addOutline } from 'ionicons/icons';
+import { defineComponent, ref, onMounted } from 'vue'
+import { addOutline } from 'ionicons/icons'
 import {
   IonPage,
   IonHeader,
@@ -85,9 +95,9 @@ import {
   IonItemOption,
   IonModal,
   IonInput
-} from '@ionic/vue';
-import { DatabaseService } from '@/services/DatabaseService';
-import type { Mercado } from '@/types';
+} from '@ionic/vue'
+import { DatabaseService } from '@/services/DatabaseService'
+import type { Mercado } from '@/types'
 
 export default defineComponent({
   name: 'MercadosView',
@@ -111,49 +121,49 @@ export default defineComponent({
     IonInput
   },
   setup() {
-    const db = DatabaseService.getInstance();
-    
-    const mercados = ref<Mercado[]>([]);
-    const isModalOpen = ref(false);
+    const db = DatabaseService.getInstance()
+
+    const mercados = ref<Mercado[]>([])
+    const isModalOpen = ref(false)
     const novoMercado = ref({
       nome: '',
       endereco: ''
-    });
+    })
 
     const loadData = async () => {
-      await db.init();
-      mercados.value = await db.getMercados();
-    };
+      await db.init()
+      mercados.value = await db.getMercados()
+    }
 
     const showModal = () => {
-      isModalOpen.value = true;
-    };
+      isModalOpen.value = true
+    }
 
     const closeModal = () => {
-      isModalOpen.value = false;
+      isModalOpen.value = false
       novoMercado.value = {
         nome: '',
         endereco: ''
-      };
-    };
+      }
+    }
 
     const salvar = async () => {
       if (novoMercado.value.nome) {
-        await db.addMercado(novoMercado.value);
-        closeModal();
-        loadData();
+        await db.addMercado(novoMercado.value)
+        closeModal()
+        loadData()
       }
-    };
+    }
 
     const deleteMercado = async (id: number) => {
       // TODO: Verificar se o mercado está sendo usado em alguma lista antes de excluir
       // await db.deleteMercado(id);
-      loadData();
-    };
+      loadData()
+    }
 
     onMounted(() => {
-      loadData();
-    });
+      loadData()
+    })
 
     return {
       mercados,
@@ -164,7 +174,7 @@ export default defineComponent({
       salvar,
       deleteMercado,
       addOutline
-    };
+    }
   }
-});
+})
 </script>

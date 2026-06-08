@@ -1,10 +1,10 @@
 // Importa as configurações globais para os testes
-import { vi, beforeAll, afterEach, afterAll } from 'vitest';
-import { config } from '@vue/test-utils';
-import { setupCapacitorMocks } from './mocks/capacitor';
-import { setupRouterMocks } from './mocks/router';
-import { setupPiniaMocks } from './mocks/pinia';
-import { setupIonicMocks } from './mocks/ionic';
+import { vi, beforeAll, afterEach, afterAll } from 'vitest'
+import { config } from '@vue/test-utils'
+import { setupCapacitorMocks } from './mocks/capacitor'
+import { setupRouterMocks } from './mocks/router'
+import { setupPiniaMocks } from './mocks/pinia'
+import { setupIonicMocks } from './mocks/ionic'
 
 // Configura o Vue Test Utils
 config.global = {
@@ -15,7 +15,7 @@ config.global = {
   mocks: {},
   stubs: {},
   provide: {}
-};
+}
 
 // Configura mocks globais
 vi.mock('@/services/api', () => ({
@@ -26,19 +26,19 @@ vi.mock('@/services/api', () => ({
     delete: vi.fn(),
     patch: vi.fn()
   }
-}));
+}))
 
 // Configura mocks para o Capacitor
-setupCapacitorMocks();
+setupCapacitorMocks()
 
 // Configura mocks para o Vue Router
-setupRouterMocks();
+setupRouterMocks()
 
 // Configura mocks para o Pinia
-setupPiniaMocks();
+setupPiniaMocks()
 
 // Configura mocks para o Ionic
-setupIonicMocks();
+setupIonicMocks()
 
 // Configurações adicionais para os testes
 beforeAll(() => {
@@ -52,7 +52,7 @@ beforeAll(() => {
       clear: vi.fn()
     },
     writable: true
-  });
+  })
 
   // Configura o matchMedia para testes
   Object.defineProperty(window, 'matchMedia', {
@@ -67,18 +67,18 @@ beforeAll(() => {
       removeEventListener: vi.fn(),
       dispatchEvent: vi.fn()
     }))
-  });
-});
+  })
+})
 
 afterEach(() => {
   // Limpa todos os mocks após cada teste
-  vi.clearAllMocks();
-  
+  vi.clearAllMocks()
+
   // Limpa o localStorage mockado
-  window.localStorage.clear();
-});
+  window.localStorage.clear()
+})
 
 afterAll(() => {
   // Limpeza final após todos os testes
-  vi.restoreAllMocks();
-});
+  vi.restoreAllMocks()
+})

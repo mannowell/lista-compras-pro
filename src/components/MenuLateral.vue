@@ -9,17 +9,23 @@
     <ion-content>
       <ion-list>
         <ion-item router-link="/listas" @click="closeMenu">
-          <ion-icon :icon="listOutline" slot="start"></ion-icon>
+          <template #start>
+            <ion-icon :icon="listOutline" />
+          </template>
           <ion-label>Listas de Compras</ion-label>
         </ion-item>
 
         <ion-item router-link="/produtos" @click="closeMenu">
-          <ion-icon :icon="cubeOutline" slot="start"></ion-icon>
+          <template #start>
+            <ion-icon :icon="cubeOutline" />
+          </template>
           <ion-label>Produtos</ion-label>
         </ion-item>
 
         <ion-item router-link="/mercados" @click="closeMenu">
-          <ion-icon :icon="storefront" slot="start"></ion-icon>
+          <template #start>
+            <ion-icon :icon="storefront" />
+          </template>
           <ion-label>Mercados</ion-label>
         </ion-item>
       </ion-list>
@@ -28,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 import {
   IonMenu,
   IonHeader,
@@ -40,8 +46,8 @@ import {
   IonLabel,
   IonIcon,
   menuController
-} from '@ionic/vue';
-import { listOutline, cubeOutline, storefront } from 'ionicons/icons';
+} from '@ionic/vue'
+import { listOutline, cubeOutline, storefront } from 'ionicons/icons'
 
 export default defineComponent({
   name: 'MenuLateral',
@@ -58,15 +64,15 @@ export default defineComponent({
   },
   setup() {
     const closeMenu = async () => {
-      await menuController.close();
-    };
+      await menuController.close()
+    }
 
     return {
       closeMenu,
       listOutline,
       cubeOutline,
       storefront
-    };
+    }
   }
-});
+})
 </script>

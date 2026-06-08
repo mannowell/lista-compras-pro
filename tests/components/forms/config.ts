@@ -1,5 +1,5 @@
-import { config } from '@vue/test-utils';
-import { vi } from 'vitest';
+import { config } from '@vue/test-utils'
+import { vi } from 'vitest'
 
 // Configuração global para testes de componentes de formulário
 config.global = {
@@ -10,7 +10,7 @@ config.global = {
   mocks: {},
   stubs: {},
   provide: {}
-};
+}
 
 // Configuração de mocks para validação de formulários
 vi.mock('@vuelidate/core', () => ({
@@ -28,7 +28,7 @@ vi.mock('@vuelidate/core', () => ({
       $pending: false
     }
   }))
-}));
+}))
 
 // Configuração de mocks para componentes de formulário do Ionic
 vi.mock('@ionic/vue', () => ({
@@ -89,10 +89,10 @@ vi.mock('@ionic/vue', () => ({
     name: 'IonNote',
     template: '<small class="note"><slot></slot></small>'
   }
-}));
+}))
 
 // Configuração de variáveis de ambiente para testes de componentes de formulário
-process.env.VITE_APP_NAME = 'App Mercado';
-process.env.VITE_APP_VERSION = '1.0.0';
-process.env.VITE_API_BASE_URL = 'http://localhost:3000/api';
-process.env.VITE_ENABLE_MOCKS = 'true';
+process.env.VITE_APP_NAME = 'App Mercado'
+process.env.VITE_APP_VERSION = '1.0.0'
+process.env.VITE_API_BASE_URL = 'http://localhost:3000/api'
+process.env.VITE_ENABLE_MOCKS = 'true'

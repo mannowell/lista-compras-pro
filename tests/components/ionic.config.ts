@@ -1,5 +1,5 @@
-import { config } from '@vue/test-utils';
-import { vi } from 'vitest';
+import { config } from '@vue/test-utils'
+import { vi } from 'vitest'
 
 // Configuração global para testes de componentes do Ionic
 config.global = {
@@ -10,20 +10,20 @@ config.global = {
   mocks: {},
   stubs: {},
   provide: {}
-};
+}
 
 // Mock para componentes básicos do Ionic
 const mockIonicComponent = (name: string) => ({
   name,
   template: '<div><slot></slot></div>'
-});
+})
 
 // Mock para componentes modais do Ionic
 const mockIonicModal = (name: string) => ({
   name,
   template: '<div v-if="isOpen"><slot></slot></div>',
   props: ['isOpen']
-});
+})
 
 // Configuração de mocks para componentes do Ionic
 vi.mock('@ionic/vue', () => ({
@@ -40,7 +40,7 @@ vi.mock('@ionic/vue', () => ({
   IonLabel: mockIonicComponent('IonLabel'),
   IonButton: { ...mockIonicComponent('IonButton'), template: '<button><slot></slot></button>' },
   IonIcon: { ...mockIonicComponent('IonIcon'), template: '<span><slot></slot></span>' },
-  
+
   // Componentes modais
   IonLoading: mockIonicModal('IonLoading'),
   IonToast: mockIonicModal('IonToast'),
@@ -48,7 +48,7 @@ vi.mock('@ionic/vue', () => ({
   IonActionSheet: mockIonicModal('IonActionSheet'),
   IonModal: mockIonicModal('IonModal'),
   IonPopover: mockIonicModal('IonPopover'),
-  
+
   // Controladores
   menuController: {
     enable: vi.fn(),
@@ -75,7 +75,7 @@ vi.mock('@ionic/vue', () => ({
   popoverController: {
     create: vi.fn(() => Promise.resolve({ present: vi.fn(), dismiss: vi.fn() }))
   }
-}));
+}))
 
 // Mock para ionicons
 vi.mock('ionicons/icons', () => ({
@@ -113,4 +113,4 @@ vi.mock('ionicons/icons', () => ({
   starHalfSharp: 'star-half-sharp',
   star: 'star',
   starHalf: 'star-half'
-}));
+}))

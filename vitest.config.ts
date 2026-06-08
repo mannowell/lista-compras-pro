@@ -1,14 +1,14 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import { fileURLToPath, URL } from 'url';
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'url'
 
 export default defineConfig({
   plugins: [
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag.startsWith('ion-')
+          isCustomElement: tag => tag.startsWith('ion-')
         }
       }
     })
@@ -80,7 +80,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '~': fileURLToPath(new URL('./node_modules', import.meta.url)),
-      'vue': 'vue/dist/vue.esm-bundler.js'
+      vue: 'vue/dist/vue.esm-bundler.js'
     }
   },
   define: {
@@ -88,4 +88,4 @@ export default defineConfig({
     __VUE_OPTIONS_API__: 'true',
     __VUE_PROD_DEVTOOLS__: 'false'
   }
-});
+})

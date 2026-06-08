@@ -1,5 +1,5 @@
-import { config } from '@vue/test-utils';
-import { vi } from 'vitest';
+import { config } from '@vue/test-utils'
+import { vi } from 'vitest'
 
 // Configuração global do Vue Test Utils
 config.global = {
@@ -10,7 +10,7 @@ config.global = {
   mocks: {},
   stubs: {},
   provide: {}
-};
+}
 
 // Configuração de aliases para módulos
 vi.mock('@/services/api', () => ({
@@ -21,10 +21,10 @@ vi.mock('@/services/api', () => ({
     delete: vi.fn(),
     patch: vi.fn()
   }
-}));
+}))
 
 // Configuração de variáveis de ambiente para testes
-process.env.VITE_APP_NAME = 'App Mercado';
-process.env.VITE_APP_VERSION = '1.0.0';
-process.env.VITE_API_BASE_URL = 'http://localhost:3000/api';
-process.env.VITE_ENABLE_MOCKS = 'true';
+process.env.VITE_APP_NAME = 'App Mercado'
+process.env.VITE_APP_VERSION = '1.0.0'
+process.env.VITE_API_BASE_URL = 'http://localhost:3000/api'
+process.env.VITE_ENABLE_MOCKS = 'true'

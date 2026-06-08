@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi } from 'vitest'
 
 // Configuração de mocks para testes do banco de dados SQLite
 const mockDatabaseConnection = {
@@ -30,27 +30,27 @@ const mockDatabaseConnection = {
   changeEncryptionSecret: vi.fn(),
   clearEncryptionSecret: vi.fn(),
   checkEncryptionSecret: vi.fn()
-};
+}
 
 // Mock para o SQLite
 vi.mock('@capacitor-community/sqlite', () => ({
   SQLiteConnection: class {
-    createConnection = vi.fn(() => mockDatabaseConnection);
-    checkConnectionsConsistency = vi.fn();
-    isConnection = vi.fn();
-    retrieveConnection = vi.fn();
-    retrieveAllConnections = vi.fn();
-    closeAllConnections = vi.fn();
-    initWebStore = vi.fn();
-    saveToStore = vi.fn();
-    saveToLocalDisk = vi.fn();
-    getFromLocalDiskToStore = vi.fn();
-    getNCDatabasePath = vi.fn();
-    isStoreOpen = vi.fn();
-    isStoreExists = vi.fn();
-    deleteStore = vi.fn();
+    createConnection = vi.fn(() => mockDatabaseConnection)
+    checkConnectionsConsistency = vi.fn()
+    isConnection = vi.fn()
+    retrieveConnection = vi.fn()
+    retrieveAllConnections = vi.fn()
+    closeAllConnections = vi.fn()
+    initWebStore = vi.fn()
+    saveToStore = vi.fn()
+    saveToLocalDisk = vi.fn()
+    getFromLocalDiskToStore = vi.fn()
+    getNCDatabasePath = vi.fn()
+    isStoreOpen = vi.fn()
+    isStoreExists = vi.fn()
+    deleteStore = vi.fn()
   }
-}));
+}))
 
 // Mock para o Capacitor
 vi.mock('@capacitor/core', () => ({
@@ -60,13 +60,13 @@ vi.mock('@capacitor/core', () => ({
     isPluginAvailable: () => true,
     platform: 'web'
   }
-}));
+}))
 
 // Configuração de variáveis de ambiente para testes do banco de dados
-process.env.VITE_APP_NAME = 'App Mercado';
-process.env.VITE_APP_VERSION = '1.0.0';
-process.env.VITE_API_BASE_URL = 'http://localhost:3000/api';
-process.env.VITE_ENABLE_MOCKS = 'true';
+process.env.VITE_APP_NAME = 'App Mercado'
+process.env.VITE_APP_VERSION = '1.0.0'
+process.env.VITE_API_BASE_URL = 'http://localhost:3000/api'
+process.env.VITE_ENABLE_MOCKS = 'true'
 
 // Exporta o mock da conexão para uso nos testes
-export { mockDatabaseConnection };
+export { mockDatabaseConnection }

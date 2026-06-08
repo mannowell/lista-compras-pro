@@ -1,8 +1,9 @@
-import { vi } from 'vitest';
+import { vi } from 'vitest'
 
 export function setupRouterMocks() {
   vi.mock('vue-router', async () => {
-    const actual = await vi.importActual('vue-router');
+    const actual = await vi.importActual('vue-router')
+
     return {
       ...actual,
       useRouter: vi.fn(() => ({
@@ -103,13 +104,13 @@ export function setupRouterMocks() {
           }
         },
         setup() {
-          return () => null;
+          return () => null
         }
       },
       RouterView: {
         name: 'RouterView',
         setup() {
-          return () => null;
+          return () => null
         }
       },
       useLink: vi.fn(() => ({
@@ -119,6 +120,6 @@ export function setupRouterMocks() {
         isExactActive: { value: false },
         navigate: vi.fn()
       }))
-    };
+    }
   })
 }

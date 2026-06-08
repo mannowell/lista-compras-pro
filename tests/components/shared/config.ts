@@ -1,5 +1,5 @@
-import { config } from '@vue/test-utils';
-import { vi } from 'vitest';
+import { config } from '@vue/test-utils'
+import { vi } from 'vitest'
 
 // Configuração global para testes de componentes compartilhados
 config.global = {
@@ -10,7 +10,7 @@ config.global = {
   mocks: {},
   stubs: {},
   provide: {}
-};
+}
 
 // Configuração de mocks para testes de componentes compartilhados
 vi.mock('@/services/api', () => ({
@@ -21,7 +21,7 @@ vi.mock('@/services/api', () => ({
     delete: vi.fn(),
     patch: vi.fn()
   }
-}));
+}))
 
 // Mock para ícones
 vi.mock('ionicons/icons', () => ({
@@ -47,10 +47,10 @@ vi.mock('ionicons/icons', () => ({
   starHalfSharp: 'star-half-sharp',
   star: 'star',
   starHalf: 'star-half'
-}));
+}))
 
 // Configuração de variáveis de ambiente para testes de componentes compartilhados
-process.env.VITE_APP_NAME = 'App Mercado';
-process.env.VITE_APP_VERSION = '1.0.0';
-process.env.VITE_API_BASE_URL = 'http://localhost:3000/api';
-process.env.VITE_ENABLE_MOCKS = 'true';
+process.env.VITE_APP_NAME = 'App Mercado'
+process.env.VITE_APP_VERSION = '1.0.0'
+process.env.VITE_API_BASE_URL = 'http://localhost:3000/api'
+process.env.VITE_ENABLE_MOCKS = 'true'

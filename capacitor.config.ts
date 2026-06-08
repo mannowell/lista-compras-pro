@@ -1,5 +1,5 @@
-import { CapacitorConfig } from '@capacitor/cli';
-import { KeyboardResize, KeyboardStyle } from '@capacitor/keyboard';
+import { CapacitorConfig } from '@capacitor/cli'
+import { KeyboardResize, KeyboardStyle } from '@capacitor/keyboard'
 
 // Configuração do Capacitor para Lista Compras Pro
 const config: CapacitorConfig = {
@@ -19,10 +19,13 @@ const config: CapacitorConfig = {
     hideLogs: false,
     // Configurações de privacidade para iOS (App Store)
     privacyManifest: {
-      NSPhotoLibraryUsageDescription: 'Permitir acesso à galeria para adicionar imagens aos produtos',
+      NSPhotoLibraryUsageDescription:
+        'Permitir acesso à galeria para adicionar imagens aos produtos',
       NSCameraUsageDescription: 'Permitir acesso à câmera para tirar fotos dos produtos',
-      NSLocationWhenInUseUsageDescription: 'Permitir acesso à localização para encontrar mercados próximos',
-      NSContactsUsageDescription: 'Permitir acesso aos contatos para compartilhar listas com a família',
+      NSLocationWhenInUseUsageDescription:
+        'Permitir acesso à localização para encontrar mercados próximos',
+      NSContactsUsageDescription:
+        'Permitir acesso aos contatos para compartilhar listas com a família',
       NSAppleMusicUsageDescription: 'Permitir acesso à mídia para sons de notificação',
       NSMicrophoneUsageDescription: 'Permitir acesso ao microfone para lembretes de voz',
       NSMotionUsageDescription: 'Permitir acesso ao sensor de movimento para acessibilidade'
@@ -82,6 +85,6 @@ const config: CapacitorConfig = {
       splashImmersive: true
     }
   }
-};
+}
 
-export default config;
+export default config

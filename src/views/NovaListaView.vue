@@ -2,9 +2,11 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button default-href="/"></ion-back-button>
-        </ion-buttons>
+        <template #start>
+          <ion-buttons>
+            <ion-back-button default-href="/" />
+          </ion-buttons>
+        </template>
         <ion-title>Nova Lista de Compras</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -13,9 +15,9 @@
       <ion-list>
         <ion-item>
           <ion-label position="stacked">Data</ion-label>
-          <ion-datetime-button datetime="date"></ion-datetime-button>
+          <ion-datetime-button datetime="date" />
           <ion-modal :keep-contents-mounted="true">
-            <ion-datetime id="date" v-model="data" presentation="date"></ion-datetime>
+            <ion-datetime id="date" v-model="data" presentation="date" />
           </ion-modal>
         </ion-item>
 
@@ -29,16 +31,14 @@
         </ion-item>
       </ion-list>
 
-      <ion-button expand="block" @click="salvar" :disabled="!isValid">
-        Criar Lista
-      </ion-button>
+      <ion-button expand="block" :disabled="!isValid" @click="salvar"> Criar Lista </ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   IonPage,
   IonHeader,
@@ -56,9 +56,9 @@ import {
   IonDatetime,
   IonDatetimeButton,
   IonModal
-} from '@ionic/vue';
-import { DatabaseService } from '@/services/DatabaseService';
-import type { Mercado } from '@/types';
+} from '@ionic/vue'
+import { DatabaseService } from '@/services/DatabaseService'
+import type { Mercado } from '@/types'
 
 export default defineComponent({
   name: 'NovaListaView',
@@ -81,21 +81,21 @@ export default defineComponent({
     IonModal
   },
   setup() {
-    const router = useRouter();
-    const db = DatabaseService.getInstance();
-    
-    const data = ref(new Date().toISOString());
-    const mercadoId = ref<number | null>(null);
-    const mercados = ref<Mercado[]>([]);
+    const router = useRouter()
+    const db = DatabaseService.getInstance()
+
+    const data = ref(new Date().toISOString())
+    const mercadoId = ref<number | null>(null)
+    const mercados = ref<Mercado[]>([])
 
     const isValid = computed(() => {
-      return data.value && mercadoId.value;
-    });
+      return data.value && mercadoId.value
+    })
 
     const loadMercados = async () => {
-      await db.init();
-      mercados.value = await db.getMercados();
-    };
+      await db.init()
+      mercados.value = await db.getMercados()
+    }
 
     const salvar = async () => {
       if (isValid.value) {
@@ -104,14 +104,14 @@ export default defineComponent({
           mercadoId: mercadoId.value!,
           status: 'pendente',
           total: 0
-        });
-        router.back();
+        })
+        router.back()
       }
-    };
+    }
 
     onMounted(() => {
-      loadMercados();
-    });
+      loadMercados()
+    })
 
     return {
       data,
@@ -119,7 +119,7 @@ export default defineComponent({
       mercados,
       isValid,
       salvar
-    };
+    }
   }
-});
+})
 </script>

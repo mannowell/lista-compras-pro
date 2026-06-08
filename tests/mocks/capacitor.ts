@@ -10,7 +10,7 @@ export function setupCapacitorMocks() {
       platform: 'web'
     },
     registerPlugin: vi.fn()
-  }));
+  }))
 
   // Mocks para @capacitor/app
   vi.mock('@capacitor/app', () => ({
@@ -19,8 +19,8 @@ export function setupCapacitorMocks() {
       removeAllListeners: vi.fn(),
       getState: vi.fn(() => Promise.resolve({ isActive: true })),
       exitApp: vi.fn()
-    },
-  }));
+    }
+  }))
 
   // Mocks para @capacitor/haptics
   vi.mock('@capacitor/haptics', () => ({
@@ -31,8 +31,8 @@ export function setupCapacitorMocks() {
       selectionStart: vi.fn(),
       selectionChanged: vi.fn(),
       selectionEnd: vi.fn()
-    },
-  }));
+    }
+  }))
 
   // Mocks para @capacitor/keyboard
   vi.mock('@capacitor/keyboard', () => ({
@@ -45,8 +45,8 @@ export function setupCapacitorMocks() {
       setStyle: vi.fn(),
       addListener: vi.fn(),
       removeAllListeners: vi.fn()
-    },
-  }));
+    }
+  }))
 
   // Mocks para @capacitor/status-bar
   vi.mock('@capacitor/status-bar', () => ({
@@ -57,8 +57,8 @@ export function setupCapacitorMocks() {
       show: vi.fn(),
       hide: vi.fn(),
       getInfo: vi.fn(() => Promise.resolve({ visible: true, style: 'DARK' }))
-    },
-  }));
+    }
+  }))
 
   // Mocks para @capacitor-community/sqlite
   vi.mock('@capacitor-community/sqlite', () => ({
@@ -96,17 +96,18 @@ export function setupCapacitorMocks() {
         saveToStore: vi.fn(),
         syncDate: vi.fn(),
         syncSchema: vi.fn()
-      }));
-      checkConnectionsConsistency = vi.fn();
-      isConnection = vi.fn();
-      retrieveConnection = vi.fn();
-      retrieveAllConnections = vi.fn();
-      closeAllConnections = vi.fn();
-      initWebStore = vi.fn();
-      saveToStore = vi.fn();
-      saveToLocalDisk = vi.fn();
-      getFromLocalDiskToStore = vi.fn();
-      getNCDatabasePath = vi.fn();
+      }))
+
+      checkConnectionsConsistency = vi.fn()
+      isConnection = vi.fn()
+      retrieveConnection = vi.fn()
+      retrieveAllConnections = vi.fn()
+      closeAllConnections = vi.fn()
+      initWebStore = vi.fn()
+      saveToStore = vi.fn()
+      saveToLocalDisk = vi.fn()
+      getFromLocalDiskToStore = vi.fn()
+      getNCDatabasePath = vi.fn()
     },
     SQLiteDBConnection: class {},
     SQLiteHook: {
@@ -117,7 +118,7 @@ export function setupCapacitorMocks() {
       changes: {
         changes: 0,
         lastId: 0
-      },
+      }
     },
     capSQLiteValues: {
       values: []
@@ -176,6 +177,6 @@ export function setupCapacitorMocks() {
     },
     capSQLiteVersion: {
       version: 0
-    },
-  }));
+    }
+  }))
 }

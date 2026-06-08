@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
-import ListaComprasView from '../views/ListaComprasView.vue';
+import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { RouteRecordRaw } from 'vue-router'
+import ListaComprasView from '../views/ListaComprasView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {

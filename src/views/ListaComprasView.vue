@@ -2,15 +2,19 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+        <template #start>
+          <ion-buttons>
+            <ion-menu-button />
+          </ion-buttons>
+        </template>
         <ion-title>Lista de Compras</ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="novaLista">
-            <ion-icon :icon="addOutline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <template #end>
+          <ion-buttons>
+            <ion-button @click="novaLista">
+              <ion-icon :icon="addOutline" />
+            </ion-button>
+          </ion-buttons>
+        </template>
       </ion-toolbar>
     </ion-header>
 
@@ -22,9 +26,9 @@
               <h2>{{ formatDate(lista.data) }}</h2>
               <p>{{ lista.status }}</p>
             </ion-label>
-            <ion-note slot="end" v-if="lista.total">
-              R$ {{ lista.total.toFixed(2) }}
-            </ion-note>
+            <template #end>
+              <ion-note v-if="lista.total"> R$ {{ lista.total.toFixed(2) }} </ion-note>
+            </template>
           </ion-item>
 
           <ion-item-options side="end">
@@ -39,8 +43,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { defineComponent, ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import {
   IonPage,
   IonHeader,
@@ -58,10 +62,10 @@ import {
   IonItemOptions,
   IonItemOption,
   IonMenuButton
-} from '@ionic/vue';
-import { addOutline } from 'ionicons/icons';
-import { ListaCompra } from '@/types';
-import { DatabaseService } from '@/services/DatabaseService';
+} from '@ionic/vue'
+import { addOutline } from 'ionicons/icons'
+import { ListaCompra } from '@/types'
+import { DatabaseService } from '@/services/DatabaseService'
 
 export default defineComponent({
   name: 'ListaComprasView',
@@ -84,33 +88,33 @@ export default defineComponent({
     IonMenuButton
   },
   setup() {
-    const router = useRouter();
-    const db = DatabaseService.getInstance();
-    const listas = ref<ListaCompra[]>([]);
+    const router = useRouter()
+    const db = DatabaseService.getInstance()
+    const listas = ref<ListaCompra[]>([])
 
     const loadListas = async () => {
-      await db.init();
-      listas.value = await db.getListasCompra();
-    };
+      await db.init()
+      listas.value = await db.getListasCompra()
+    }
 
     const novaLista = () => {
-      router.push('/nova-lista');
-    };
+      router.push('/nova-lista')
+    }
 
     const deleteLista = async (id?: number) => {
       if (id) {
         // Implementar exclusão da lista
-        await loadListas();
+        await loadListas()
       }
-    };
+    }
 
     const formatDate = (date: Date) => {
-      return new Date(date).toLocaleDateString('pt-BR');
-    };
+      return new Date(date).toLocaleDateString('pt-BR')
+    }
 
     onMounted(() => {
-      loadListas();
-    });
+      loadListas()
+    })
 
     return {
       listas,
@@ -118,7 +122,7 @@ export default defineComponent({
       deleteLista,
       formatDate,
       addOutline
-    };
+    }
   }
-});
+})
 </script>

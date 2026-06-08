@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import { vi } from 'vitest'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
 
 // Cria uma instância do axios e do mock adapter
 const api = axios.create({
@@ -12,7 +12,7 @@ const api = axios.create({
   }
 })
 
-const mock = new MockAdapter(api, { onNoMatch: 'throwException' });
+const mock = new MockAdapter(api, { onNoMatch: 'throwException' })
 
 // Configuração de mocks para os testes de integração de API
 const mockApiResponses = {
@@ -71,22 +71,22 @@ const mockApiResponses = {
         { id: 'item-1', productId: 'prod-1', quantity: 2, checked: false },
         { id: 'item-2', productId: 'prod-2', quantity: 1, checked: true }
       ]
-    },
-  },
-};
+    }
+  }
+}
 
 // Configura os mocks padrão
-mock.onPost('/auth/login').reply(200, mockApiResponses.login.success);
-mock.onGet('/products').reply(200, mockApiResponses.products.list);
-mock.onGet(/\/products\/.*/).reply(200, mockApiResponses.products.detail);
-mock.onGet('/shopping-lists').reply(200, mockApiResponses.shoppingLists.list);
-mock.onGet(/\/shopping-lists\/.*/).reply(200, mockApiResponses.shoppingLists.detail);
+mock.onPost('/auth/login').reply(200, mockApiResponses.login.success)
+mock.onGet('/products').reply(200, mockApiResponses.products.list)
+mock.onGet(/\/products\/.*/).reply(200, mockApiResponses.products.detail)
+mock.onGet('/shopping-lists').reply(200, mockApiResponses.shoppingLists.list)
+mock.onGet(/\/shopping-lists\/.*/).reply(200, mockApiResponses.shoppingLists.detail)
 
 // Configuração de variáveis de ambiente para testes de integração de API
-process.env.VITE_APP_NAME = 'App Mercado';
-process.env.VITE_APP_VERSION = '1.0.0';
-process.env.VITE_API_BASE_URL = 'http://localhost:3000/api';
-process.env.VITE_ENABLE_MOCKS = 'true';
+process.env.VITE_APP_NAME = 'App Mercado'
+process.env.VITE_APP_VERSION = '1.0.0'
+process.env.VITE_API_BASE_URL = 'http://localhost:3000/api'
+process.env.VITE_ENABLE_MOCKS = 'true'
 
 // Exporta os mocks e a instância do axios para uso nos testes
-export { api, mock, mockApiResponses };
+export { api, mock, mockApiResponses }
