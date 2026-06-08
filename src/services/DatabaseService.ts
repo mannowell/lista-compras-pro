@@ -1,6 +1,8 @@
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite'
 import { Produto, Mercado, ListaCompra, ItemLista, HistoricoPreco } from '../types'
 
+const isTesting = import.meta.env.VITE_CYPRESS_TESTING === 'true'
+
 export class DatabaseService {
   private static instance: DatabaseService
   private sqlite: SQLiteConnection
@@ -21,6 +23,12 @@ export class DatabaseService {
 
   async init(): Promise<void> {
     if (this.initialized) return
+    if (isTesting) {
+      // Mock initialization for Cypress E2E tests
+      this.initialized = true
+
+      return
+    }
 
     const db = await this.sqlite.createConnection('app-mercado', false, 'no-encryption', 1, false)
 
