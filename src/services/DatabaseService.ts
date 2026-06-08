@@ -1,13 +1,17 @@
 import { CapacitorSQLite, SQLiteConnection, SQLiteDBConnection } from '@capacitor-community/sqlite'
+import { Capacitor } from '@capacitor/core'
 import { Produto, Mercado, ListaCompra, ItemLista, HistoricoPreco } from '../types'
 
 const isTesting = import.meta.env.VITE_CYPRESS_TESTING === 'true'
+const isNative = Capacitor.isNativePlatform()
 
 export class DatabaseService {
   private static instance: DatabaseService
   private sqlite: SQLiteConnection
   private db!: SQLiteDBConnection
   private initialized = false
+  private initError: Error | null = null
+  private fallbackMode = false
 
   private constructor() {
     this.sqlite = new SQLiteConnection(CapacitorSQLite)
@@ -21,75 +25,99 @@ export class DatabaseService {
     return DatabaseService.instance
   }
 
+  public isFallbackMode(): boolean {
+    return this.fallbackMode
+  }
+
+  public getInitError(): Error | null {
+    return this.initError
+  }
+
   async init(): Promise<void> {
     if (this.initialized) return
     if (isTesting) {
-      // Mock initialization for Cypress E2E tests
       this.initialized = true
 
       return
     }
 
-    const db = await this.sqlite.createConnection('app-mercado', false, 'no-encryption', 1, false)
+    try {
+      // Check if we're on a platform that supports native SQLite
+      if (!isNative) {
+        console.warn('Running on web platform - SQLite native not available, using fallback mode')
+        this.fallbackMode = true
+        this.initialized = true
 
-    await db.open()
+        return
+      }
 
-    const statements = [
-      `CREATE TABLE IF NOT EXISTS produtos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL,
-        descricao TEXT,
-        createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL
-      )`,
-      `CREATE TABLE IF NOT EXISTS mercados (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome TEXT NOT NULL,
-        endereco TEXT,
-        createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL
-      )`,
-      `CREATE TABLE IF NOT EXISTS listas_compra (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        data TEXT NOT NULL,
-        mercadoId INTEGER,
-        status TEXT CHECK(status IN ('pendente', 'concluida')) NOT NULL,
-        total REAL,
-        createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL,
-        FOREIGN KEY (mercadoId) REFERENCES mercados(id)
-      )`,
-      `CREATE TABLE IF NOT EXISTS itens_lista (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        listaId INTEGER NOT NULL,
-        produtoId INTEGER NOT NULL,
-        quantidade INTEGER NOT NULL,
-        preco REAL,
-        comprado INTEGER NOT NULL DEFAULT 0,
-        createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL,
-        FOREIGN KEY (listaId) REFERENCES listas_compra(id),
-        FOREIGN KEY (produtoId) REFERENCES produtos(id)
-      )`,
-      `CREATE TABLE IF NOT EXISTS historico_precos (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        produtoId INTEGER NOT NULL,
-        mercadoId INTEGER NOT NULL,
-        preco REAL NOT NULL,
-        data TEXT NOT NULL,
-        createdAt TEXT NOT NULL,
-        updatedAt TEXT NOT NULL,
-        FOREIGN KEY (produtoId) REFERENCES produtos(id),
-        FOREIGN KEY (mercadoId) REFERENCES mercados(id)
-      )`
-    ]
+      const db = await this.sqlite.createConnection('app-mercado', false, 'no-encryption', 1, false)
 
-    for (const statement of statements) {
-      await db.execute(statement)
+      await db.open()
+
+      const statements = [
+        `CREATE TABLE IF NOT EXISTS produtos (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          nome TEXT NOT NULL,
+          descricao TEXT,
+          createdAt TEXT NOT NULL,
+          updatedAt TEXT NOT NULL
+        )`,
+        `CREATE TABLE IF NOT EXISTS mercados (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          nome TEXT NOT NULL,
+          endereco TEXT,
+          createdAt TEXT NOT NULL,
+          updatedAt TEXT NOT NULL
+        )`,
+        `CREATE TABLE IF NOT EXISTS listas_compra (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          data TEXT NOT NULL,
+          mercadoId INTEGER,
+          status TEXT CHECK(status IN ('pendente', 'concluida')) NOT NULL,
+          total REAL,
+          createdAt TEXT NOT NULL,
+          updatedAt TEXT NOT NULL,
+          FOREIGN KEY (mercadoId) REFERENCES mercados(id)
+        )`,
+        `CREATE TABLE IF NOT EXISTS itens_lista (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          listaId INTEGER NOT NULL,
+          produtoId INTEGER NOT NULL,
+          quantidade INTEGER NOT NULL,
+          preco REAL,
+          comprado INTEGER NOT NULL DEFAULT 0,
+          createdAt TEXT NOT NULL,
+          updatedAt TEXT NOT NULL,
+          FOREIGN KEY (listaId) REFERENCES listas_compra(id),
+          FOREIGN KEY (produtoId) REFERENCES produtos(id)
+        )`,
+        `CREATE TABLE IF NOT EXISTS historico_precos (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          produtoId INTEGER NOT NULL,
+          mercadoId INTEGER NOT NULL,
+          preco REAL NOT NULL,
+          data TEXT NOT NULL,
+          createdAt TEXT NOT NULL,
+          updatedAt TEXT NOT NULL,
+          FOREIGN KEY (produtoId) REFERENCES produtos(id),
+          FOREIGN KEY (mercadoId) REFERENCES mercados(id)
+        )`
+      ]
+
+      for (const statement of statements) {
+        await db.execute(statement)
+      }
+
+      this.db = db
+      this.initialized = true
+      console.log('Database initialized successfully')
+    } catch (error) {
+      this.initError = error as Error
+      console.error('Database initialization failed, enabling fallback mode:', error)
+      this.fallbackMode = true
+      this.initialized = true
     }
-
-    this.db = db
-    this.initialized = true
   }
 
   // Produtos

@@ -22,6 +22,20 @@ module.exports = {
     }
   },
   plugins: ['vue', '@typescript-eslint', 'prettier', 'jest'],
+  ignorePatterns: [
+    'android/',
+    'ios/',
+    'node_modules/',
+    'dist/',
+    '*.legacy.*.js',
+    '*.legacy.*.ts',
+    '*.legacy.*.vue',
+    'coverage/',
+    '.git/',
+    '.husky/',
+    'vite.config.ts.timestamp-*',
+    '*.log'
+  ],
   settings: {
     'import/resolver': {
       node: {
