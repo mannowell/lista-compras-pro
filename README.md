@@ -8,6 +8,17 @@
 [![Ionic](https://img.shields.io/badge/Ionic-8.0-3880FF.svg)](https://ionicframework.com/)
 [![Vue](https://img.shields.io/badge/Vue-3.4-42b883.svg)](https://vuejs.org/)
 [![Capacitor](https://img.shields.io/badge/Capacitor-7.4-119EFF.svg)](https://capacitorjs.com/)
+[![Stars](https://img.shields.io/github/stars/mannowell/lista-compras-pro?style=social)](https://github.com/mannowell/lista-compras-pro)
+
+---
+
+## 📸 Screenshots
+
+| Home | Lista de Compras | Comparação de Preços |
+|------|------------------|---------------------|
+| ![Home](docs/screenshots/home.png) | ![Lista](docs/screenshots/lista.png) | ![Preços](docs/screenshots/precos.png) |
+
+> 📱 **Download APK:** Em breve na [releases page](https://github.com/mannowell/lista-compras-pro/releases)
 
 ---
 
@@ -173,7 +184,30 @@ Distribuído sob licença **MIT**. Veja [LICENSE](LICENSE) para detalhes.
 
 ## 👤 Autor
 
-**Mannowell** — [GitHub](https://github.com/mannowell) · [LinkedIn](https://linkedin.com/in/mannowell)
+**Wellison Oliveira (Mannowell)** — Desenvolvedor Full Stack & AI Automation Developer
+
+- 🌐 [GitHub](https://github.com/mannowell)
+- 💼 [LinkedIn](https://linkedin.com/in/wellison-nascimento-79ba6b65/)
+- 📧 [Email](mailto:manofama@gmail.com)
+- 🔗 [Portfolio](https://mannowell.github.io/Portifolio/)
+- 💼 [Upwork](https://www.upwork.com/freelancers/~YOUR_ID)
+
+---
+
+## 🗺 Roadmap
+
+- [x] CRUD de listas de compras
+- [x] Cadastro de mercados e produtos
+- [x] Histórico de preços
+- [x] Comparação de preços entre mercados
+- [x] Offline-first com SQLite
+- [ ] Modo família (compartilhamento de listas)
+- [ ] Notificações push (validade, promoções)
+- [ ] Sincronização na nuvem
+- [ ] Exportar/Importar CSV
+- [ ] Escaneamento de código de barras
+- [ ] Integração com APIs de supermercados
+- [ ] Versão Web PWA
 
 ---
 
