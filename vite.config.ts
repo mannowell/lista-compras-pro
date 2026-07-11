@@ -37,7 +37,7 @@ export default defineConfig({
         manualChunks: {
           vue: ['vue', 'vue-router', 'pinia'],
           ionic: ['@ionic/vue', '@ionic/vue-router', '@ionic/core'],
-          vendor: ['axios', 'lodash']
+          vendor: ['axios']
         }
       }
     }

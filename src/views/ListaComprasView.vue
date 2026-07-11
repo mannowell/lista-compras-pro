@@ -103,7 +103,7 @@ export default defineComponent({
 
     const deleteLista = async (id?: number) => {
       if (id) {
-        // Implementar exclusão da lista
+        await db.deleteListaCompra(id)
         await loadListas()
       }
     }

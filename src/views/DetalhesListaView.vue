@@ -39,14 +39,6 @@
         </ion-item-sliding>
       </ion-list>
 
-      <template #fixed>
-        <ion-fab vertical="bottom" horizontal="end">
-          <ion-fab-button @click="addItem">
-            <ion-icon :icon="addOutline" />
-          </ion-fab-button>
-        </ion-fab>
-      </template>
-
       <ion-modal v-model="isModalOpen">
         <ion-header>
           <ion-toolbar>
@@ -86,6 +78,12 @@
         </ion-content>
       </ion-modal>
     </ion-content>
+
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button @click="addItem">
+        <ion-icon :icon="addOutline" />
+      </ion-fab-button>
+    </ion-fab>
   </ion-page>
 </template>
 

@@ -14,9 +14,7 @@
 
 ## 📸 Screenshots
 
-| Home | Lista de Compras | Comparação de Preços |
-|------|------------------|---------------------|
-| ![Home](docs/screenshots/home.png) | ![Lista](docs/screenshots/lista.png) | ![Preços](docs/screenshots/precos.png) |
+> 📸 Screenshots em breve. Contribuições são bem-vindas!
 
 > 📱 **Download APK:** Em breve na [releases page](https://github.com/mannowell/lista-compras-pro/releases)
 

@@ -179,7 +179,11 @@ export default defineComponent({
 
     const editProduto = (produto: Produto) => {
       editMode.value = true
-      currentProduto.value = { ...produto }
+      currentProduto.value = {
+        id: produto.id,
+        nome: produto.nome,
+        descricao: produto.descricao
+      }
       isModalOpen.value = true
     }
 
@@ -191,7 +195,7 @@ export default defineComponent({
       if (currentProduto.value.nome) {
         await db.init()
         if (editMode.value && currentProduto.value.id) {
-          // Implementar atualização
+          await db.updateProduto(currentProduto.value)
         } else {
           await db.addProduto(currentProduto.value)
         }
@@ -202,7 +206,8 @@ export default defineComponent({
 
     const deleteProduto = async (id?: number) => {
       if (id) {
-        // Implementar exclusão
+        await db.deleteProduto(id)
+        loadProdutos()
       }
     }
 

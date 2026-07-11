@@ -237,11 +237,11 @@ export class DatabaseService {
     const fields: string[] = []
     const values: any[] = []
 
-    if (item.quantidade) {
+    if (typeof item.quantidade === 'number') {
       fields.push('quantidade = ?')
       values.push(item.quantidade)
     }
-    if (item.preco) {
+    if (typeof item.preco === 'number') {
       fields.push('preco = ?')
       values.push(item.preco)
     }
@@ -261,6 +261,49 @@ export class DatabaseService {
   // Excluir Item da Lista
   async deleteItemLista(itemId: number): Promise<void> {
     await this.db.run('DELETE FROM itens_lista WHERE id = ?', [itemId])
+  }
+
+  // Excluir Lista de Compra
+  async deleteListaCompra(listaId: number): Promise<void> {
+    await this.db.run('DELETE FROM itens_lista WHERE listaId = ?', [listaId])
+    await this.db.run('DELETE FROM listas_compra WHERE id = ?', [listaId])
+  }
+
+  // Excluir Produto
+  async deleteProduto(produtoId: number): Promise<void> {
+    await this.db.run('DELETE FROM itens_lista WHERE produtoId = ?', [produtoId])
+    await this.db.run('DELETE FROM historico_precos WHERE produtoId = ?', [produtoId])
+    await this.db.run('DELETE FROM produtos WHERE id = ?', [produtoId])
+  }
+
+  // Excluir Mercado
+  async deleteMercado(mercadoId: number): Promise<void> {
+    await this.db.run('DELETE FROM historico_precos WHERE mercadoId = ?', [mercadoId])
+    await this.db.run('DELETE FROM listas_compra WHERE mercadoId = ?', [mercadoId])
+    await this.db.run('DELETE FROM mercados WHERE id = ?', [mercadoId])
+  }
+
+  // Atualizar Produto
+  async updateProduto(produto: Partial<Produto> & { id: number }): Promise<void> {
+    const now = new Date().toISOString()
+    const fields: string[] = []
+    const values: any[] = []
+
+    if (produto.nome) {
+      fields.push('nome = ?')
+      values.push(produto.nome)
+    }
+    if (typeof produto.descricao === 'string') {
+      fields.push('descricao = ?')
+      values.push(produto.descricao || null)
+    }
+
+    fields.push('updatedAt = ?')
+    values.push(now)
+
+    values.push(produto.id)
+
+    await this.db.run(`UPDATE produtos SET ${fields.join(', ')} WHERE id = ?`, values)
   }
 
   // Histórico de Preços

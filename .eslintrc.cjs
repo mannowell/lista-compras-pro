@@ -21,7 +21,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['vue', '@typescript-eslint', 'prettier', 'jest'],
+  plugins: ['vue', '@typescript-eslint', 'prettier'],
   ignorePatterns: [
     'android/',
     'ios/',
@@ -207,7 +207,6 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-empty-function': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',

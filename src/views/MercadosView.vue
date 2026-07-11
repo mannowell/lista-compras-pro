@@ -156,8 +156,7 @@ export default defineComponent({
     }
 
     const deleteMercado = async (id: number) => {
-      // TODO: Verificar se o mercado está sendo usado em alguma lista antes de excluir
-      // await db.deleteMercado(id);
+      await db.deleteMercado(id)
       loadData()
     }
 
