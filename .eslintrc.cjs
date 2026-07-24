@@ -75,7 +75,7 @@ module.exports = {
     'no-extra-semi': 'error',
     semi: ['error', 'never'],
     quotes: ['error', 'single', { avoidEscape: true }],
-    'comma-dangle': ['error', 'never'],
+    'comma-dangle': ['error', 'only-multiline'],
     'max-len': ['warn', { code: 100, ignoreUrls: true, ignoreStrings: true, ignoreTemplateLiterals: true }],
 
     // Regras do TypeScript
