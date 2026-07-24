@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
   appName: 'Lista Compras Pro',
   webDir: 'dist',
   server: {
-    androidScheme: 'https',
+    androidScheme: 'http',
     iosScheme: 'https',
     cleartext: true,
     allowNavigation: [],
@@ -51,7 +51,7 @@ const config: CapacitorConfig = {
         biometricTitle: 'Autenticação Biométrica',
         biometricSubTitle: 'Faça login usando biometria',
       },
-      androidIsEncryption: true,
+      androidIsEncryption: false,
       androidBiometric: {
         biometricAuth: false,
         biometricTitle: 'Autenticação Biométrica',
