@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
     androidScheme: 'https',
     iosScheme: 'https',
     cleartext: true,
-    allowNavigation: []
+    allowNavigation: [],
   },
   ios: {
     contentInset: 'automatic',
@@ -28,8 +28,8 @@ const config: CapacitorConfig = {
         'Permitir acesso aos contatos para compartilhar listas com a família',
       NSAppleMusicUsageDescription: 'Permitir acesso à mídia para sons de notificação',
       NSMicrophoneUsageDescription: 'Permitir acesso ao microfone para lembretes de voz',
-      NSMotionUsageDescription: 'Permitir acesso ao sensor de movimento para acessibilidade'
-    }
+      NSMotionUsageDescription: 'Permitir acesso ao sensor de movimento para acessibilidade',
+    },
   },
   android: {
     allowMixedContent: true,
@@ -37,8 +37,8 @@ const config: CapacitorConfig = {
       keystorePath: 'release.keystore',
       keystoreAlias: 'lista-compras-pro',
       releaseType: 'AAB',
-      signingType: 'jarsigner'
-    }
+      signingType: 'jarsigner',
+    },
   },
   plugins: {
     // SQLite - criptografia + localização do DB
@@ -49,29 +49,29 @@ const config: CapacitorConfig = {
       iosBiometric: {
         biometricAuth: false,
         biometricTitle: 'Autenticação Biométrica',
-        biometricSubTitle: 'Faça login usando biometria'
+        biometricSubTitle: 'Faça login usando biometria',
       },
       androidIsEncryption: true,
       androidBiometric: {
         biometricAuth: false,
         biometricTitle: 'Autenticação Biométrica',
-        biometricSubTitle: 'Faça login usando biometria'
+        biometricSubTitle: 'Faça login usando biometria',
       },
       electronWindowsLocation: 'C:\\ProgramData\\CapacitorDatabases',
       electronMacLocation: '/Volumes/Development_Lacie/Development/Databases',
       electronLinuxLocation: 'Databases',
-      version: 1
+      version: 1,
     },
     // Teclado
     Keyboard: {
       resize: KeyboardResize.Body,
       resizeOnFullScreen: true,
-      style: KeyboardStyle.Dark
+      style: KeyboardStyle.Dark,
     },
     // Status Bar
     StatusBar: {
       backgroundColor: '#1976d2',
-      style: 'DARK'
+      style: 'DARK',
     },
     // Splash Screen
     SplashScreen: {
@@ -82,9 +82,9 @@ const config: CapacitorConfig = {
       androidScaleType: 'CENTER_CROP',
       showSpinner: false,
       splashFullScreen: true,
-      splashImmersive: true
-    }
-  }
+      splashImmersive: true,
+    },
+  },
 }
 
 export default config
