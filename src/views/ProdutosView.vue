@@ -195,7 +195,7 @@ export default defineComponent({
       if (currentProduto.value.nome) {
         await db.init()
         if (editMode.value && currentProduto.value.id) {
-          await db.updateProduto(currentProduto.value)
+          await db.updateProduto(currentProduto.value as Partial<Produto> & { id: number })
         } else {
           await db.addProduto(currentProduto.value)
         }
