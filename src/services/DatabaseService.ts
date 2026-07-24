@@ -12,6 +12,19 @@ export class DatabaseService {
   private initialized = false
   private initError: Error | null = null
   private fallbackMode = false
+  private fallbackData: {
+    produtos: Produto[]
+    mercados: Mercado[]
+    listas: ListaCompra[]
+    itens: ItemLista[]
+    historicos: HistoricoPreco[]
+  } = {
+    produtos: [],
+    mercados: [],
+    listas: [],
+    itens: [],
+    historicos: [],
+  }
 
   private constructor() {
     this.sqlite = new SQLiteConnection(CapacitorSQLite)
@@ -102,7 +115,7 @@ export class DatabaseService {
           updatedAt TEXT NOT NULL,
           FOREIGN KEY (produtoId) REFERENCES produtos(id),
           FOREIGN KEY (mercadoId) REFERENCES mercados(id)
-        )`
+        )`,
       ]
 
       for (const statement of statements) {
@@ -132,6 +145,9 @@ export class DatabaseService {
   }
 
   async getProdutos(): Promise<Produto[]> {
+    if (this.fallbackMode) {
+      return [...this.fallbackData.produtos]
+    }
     const result = await this.db.query('SELECT * FROM produtos ORDER BY nome')
 
     return result.values || []
@@ -149,6 +165,9 @@ export class DatabaseService {
   }
 
   async getMercados(): Promise<Mercado[]> {
+    if (this.fallbackMode) {
+      return [...this.fallbackData.mercados]
+    }
     const result = await this.db.query('SELECT * FROM mercados ORDER BY nome')
 
     return result.values || []
@@ -168,6 +187,9 @@ export class DatabaseService {
   }
 
   async getListasCompra(): Promise<ListaCompra[]> {
+    if (this.fallbackMode) {
+      return [...this.fallbackData.listas]
+    }
     const result = await this.db.query('SELECT * FROM listas_compra ORDER BY data DESC')
 
     return result.values || []
@@ -185,7 +207,7 @@ export class DatabaseService {
         item.preco || null,
         item.comprado ? 1 : 0,
         now,
-        now
+        now,
       ]
     )
 
@@ -193,8 +215,11 @@ export class DatabaseService {
   }
 
   async getItensLista(listaId: number): Promise<ItemLista[]> {
+    if (this.fallbackMode) {
+      return this.fallbackData.itens.filter(i => i.listaId === listaId)
+    }
     const result = await this.db.query('SELECT * FROM itens_lista WHERE listaId = ? ORDER BY id', [
-      listaId
+      listaId,
     ])
 
     return result.values || []
@@ -319,7 +344,7 @@ export class DatabaseService {
         historico.preco,
         historico.data.toISOString(),
         now,
-        now
+        now,
       ]
     )
 
@@ -327,6 +352,15 @@ export class DatabaseService {
   }
 
   async getHistoricoPrecos(produtoId: number, mercadoId?: number): Promise<HistoricoPreco[]> {
+    if (this.fallbackMode) {
+      let result = this.fallbackData.historicos.filter(h => h.produtoId === produtoId)
+
+      if (mercadoId) {
+        result = result.filter(h => h.mercadoId === mercadoId)
+      }
+
+      return result
+    }
     let query = 'SELECT * FROM historico_precos WHERE produtoId = ?'
     const params: any[] = [produtoId]
 
