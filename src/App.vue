@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
+  <ion-app id="main-content">
     <MenuLateral />
-    <ion-app id="main-content">
-      <ion-router-outlet />
-    </ion-app>
-  </div>
+    <ion-router-outlet />
+  </ion-app>
 </template>
 
 <script setup lang="ts">
